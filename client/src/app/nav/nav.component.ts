@@ -1,4 +1,6 @@
+import { importExpr } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
+import { LoginService } from '../_services/login.service';
 
 @Component({
   selector: 'app-nav',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavComponent implements OnInit {
 
-  constructor() { }
+  ime = JSON.parse(localStorage.getItem("student")!).ime
+
+  constructor(public loginService: LoginService) { }
 
   ngOnInit(): void {
   }
 
+  logout() {
+    this.loginService.logout()
+  }
 }

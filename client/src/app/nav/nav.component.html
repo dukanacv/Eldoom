@@ -20,10 +20,19 @@
                 </li>
             </ul>
         </div>
-        <form class="form-inline">
+        <form class="form-inline" *ngIf="!(loginService._currentStudent$ | async)">
             <a href="/login"><button class="btn btn-primary"
                     style="margin-right: 2rem; background-color:  rgb(90, 145, 204);" type="button">Uloguj
                     se</button></a>
         </form>
+
+        <div class="dropdown" *ngIf="loginService._currentStudent$ | async" dropdown>
+            <a class="dropdown-toggle text-light" dropdownToggle>Dobrodosli {{ime}}</a>
+            <div class="dropdown-menu " *dropdownMenu>
+                <a class="dropdown-item">Pogledaj profil</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" (click)="logout()">Izloguj se</a>
+            </div>
+        </div>
     </nav>
 </div>
