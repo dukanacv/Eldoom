@@ -1,7 +1,7 @@
-<div style="margin-bottom: 10rem;">
+<div style="margin-bottom: 5rem;">
     <h3 style="margin-top: 1rem; text-align: center;">Dobrodosli na e-learning platformu.</h3>
 
-    <div class="card-group" style="margin-top: 2rem; ">
+    <div class="card-group" style="margin-top: 2rem; " *ngIf="!(loginService._currentStudent$ | async)">
         <div class="card">
             <div class="card-body" style="text-align: center;">
                 <h5 class="card-title">O sajtu</h5>
@@ -27,14 +27,40 @@
         </div>
     </div>
 
-    <h4 style="margin-top: 1rem; margin-left: 1rem;">Kategorije kurseva po studijama se nalaze ispod:</h4>
+    <h4 style="margin-top: 1rem; margin-left: 1rem;">Kategorije kurseva po studijama se nalaze ispod:</h4><br>
 
-    <div class="container" style="margin-top: 2rem;">
+    <div class="container" style="margin-top: 2rem;" *ngIf="!(loginService._currentStudent$ | async)">
         <tabset [justified]="true">
             <tab heading="Osnovne studije">Lista osnovnih...</tab>
             <tab heading="Master studije">Lista master...</tab>
             <tab heading="Doktorske studije">Lista doktorskih...</tab>
             <tab heading="Razno">Razno...</tab>
         </tabset>
+    </div>
+
+    <div class="container" style="margin-top: 2rem; width: 500px; float: right; margin-right: 5rem; width: 60%;"
+        *ngIf="(loginService._currentStudent$ | async)">
+        <tabset [justified]="true">
+            <tab heading="Osnovne studije">Osnovni</tab>
+            <tab heading="Master studije">Master</tab>
+            <tab heading="Doktorske studije">Doktorski</tab>
+            <tab heading="Razno">Razno...</tab>
+        </tabset>
+    </div>
+
+    <div *ngIf="(loginService._currentStudent$ | async)" style="width: 25%; text-align: center;">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Kontrolni panel</h5>
+                <p class="card-text">Kontrolni panel sluzi za upravljanje kursevima na koje ste prijavljeni.</p>
+                <a href="#" class="btn btn-primary">Pogledaj</a>
+            </div>
+        </div>
+        <br>
+        <div class="card">
+            <iframe
+                src="https://calendar.google.com/calendar/embed?height=600&wkst=1&bgcolor=%23ffffff&ctz=Europe%2FBelgrade&src=ZHVrYW5hY3ZsYUBnbWFpbC5jb20&src=YWRkcmVzc2Jvb2sjY29udGFjdHNAZ3JvdXAudi5jYWxlbmRhci5nb29nbGUuY29t&src=ZW4ucnMjaG9saWRheUBncm91cC52LmNhbGVuZGFyLmdvb2dsZS5jb20&src=c3IucnMjaG9saWRheUBncm91cC52LmNhbGVuZGFyLmdvb2dsZS5jb20&color=%237986CB&color=%2333B679&color=%230B8043&color=%230B8043"
+                style="border:solid 1px #777" height="200px"></iframe>
+        </div>
     </div>
 </div>

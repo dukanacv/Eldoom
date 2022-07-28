@@ -26,12 +26,12 @@
                     se</button></a>
         </form>
 
-        <div class="dropdown" *ngIf="loginService._currentStudent$ | async" dropdown>
-            <a class="dropdown-toggle text-light" dropdownToggle>Dobrodosli {{ime}}</a>
-            <div class="dropdown-menu " *dropdownMenu>
+        <div class="btn-group" *ngIf="loginService._currentStudent$ | async" dropdown style="margin-right: 4.5rem;">
+            <a class="dropdown-toggle text-light" dropdownToggle>Vise opcija</a>
+            <div class="dropdown-menu" *dropdownMenu>
                 <a class="dropdown-item">Pogledaj profil</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" (click)="logout()">Izloguj se</a>
+                <a class="dropdown-item" (click)="logout()" href="/">Odjava</a>
             </div>
         </div>
     </nav>

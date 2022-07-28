@@ -9,7 +9,6 @@ import { LoginService } from '../_services/login.service';
 })
 export class NavComponent implements OnInit {
 
-  ime = JSON.parse(localStorage.getItem("student")!).ime
 
   constructor(public loginService: LoginService) { }
 
