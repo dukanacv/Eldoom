@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { KursService } from '../_services/kurs.service';
 import { LoginService } from '../_services/login.service';
 
 @Component({
@@ -8,9 +9,36 @@ import { LoginService } from '../_services/login.service';
 })
 export class HomeComponent implements OnInit {
   model: any = {}
+  osnovni: any = []
+  master: any = []
+  doktorski: any = []
 
-  constructor(public loginService: LoginService) { }
+  constructor(public loginService: LoginService, private kursService: KursService) { }
 
   ngOnInit(): void {
+    this.getOsnovni()
+    this.getMaster()
+    this.getDoktroski()
+  }
+
+  getOsnovni() {
+    this.kursService.getOsnovni()
+      .subscribe(response => {
+        this.osnovni = response
+      }, err => console.log(err))
+  }
+
+  getMaster() {
+    this.kursService.getMaster()
+      .subscribe(response => {
+        this.master = response
+      }, err => console.log(err))
+  }
+
+  getDoktroski() {
+    this.kursService.getDoktorski()
+      .subscribe(response => {
+        this.doktorski = response
+      }, err => console.log(err))
   }
 }
