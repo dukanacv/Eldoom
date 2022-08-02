@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { map, ReplaySubject } from 'rxjs';
 import { Student } from '../_models/student';
 
@@ -16,7 +17,7 @@ export class LoginService {
     return this.currentStudent$
   }
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   login(model: any) {
     return this.http
@@ -26,6 +27,7 @@ export class LoginService {
         if (student) {
           localStorage.setItem("student", JSON.stringify(student))//kao sesija u php, samo sto je na client strani i ima otprilike 5MB
           this.currentStudent.next(student)
+          this.router.navigate(["/"])
         }
       })
       )
