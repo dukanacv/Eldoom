@@ -43,20 +43,26 @@
         <tabset [justified]="true">
             <tab heading="Osnovne studije">
                 <ul>
-                    <h4 *ngFor="let o of osnovni">>{{o.naziv}}</h4>
+                    <a href="">
+                        <h5 *ngFor="let o of osnovni">📁{{o.naziv}}</h5>
+                    </a>
                 </ul>
             </tab>
             <tab heading="Master studije">
                 <ul>
-                    <h4 *ngFor="let m of master">>{{m.naziv}}</h4>
+                    <a href="">
+                        <h5 *ngFor="let m of master">📁{{m.naziv}}</h5>
+                    </a>
                 </ul>
             </tab>
             <tab heading="Doktorske studije">
                 <ul>
-                    <h4 *ngFor="let d of doktorski">>{{d.naziv}}</h4>
+                    <a href="">
+                        <h5 *ngFor="let d of doktorski">📁{{d.naziv}}</h5>
+                    </a>
                 </ul>
             </tab>
-            <tab heading="Razno">Razno...</tab>
+            <tab heading="Razno">📁Razno...</tab>
         </tabset>
     </div>
 
