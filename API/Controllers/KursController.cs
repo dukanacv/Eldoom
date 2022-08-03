@@ -35,5 +35,11 @@ namespace API.Controllers
         {
             return await this._db.Kursevi.Where(kurs => kurs.pripadnost.Equals("doktorski")).ToListAsync();
         }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Kurs>> GetKursById(int id)
+        {
+            return await this._db.Kursevi.FindAsync(id);
+        }
     }
 }

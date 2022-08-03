@@ -1,9 +1,18 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Kurs } from 'app/_models/kurs';
+
+
+const httpOptions = {
+  headers: new HttpHeaders({
+    Authorization: "Bearer " + JSON.parse(localStorage.getItem('student') || '{}').token
+  })
+}
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class KursService {
 
   baseUrl = "https://localhost:5001/api/"
@@ -20,5 +29,9 @@ export class KursService {
 
   getDoktorski() {
     return this.http.get(this.baseUrl + "kurs/doktorski")
+  }
+
+  getKurs(id: string) {
+    return this.http.get<Kurs>(this.baseUrl + "kurs/" + id, httpOptions)
   }
 }
