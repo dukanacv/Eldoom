@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Kurs } from 'app/_models/kurs';
 import { KursService } from '../_services/kurs.service';
 import { LoginService } from '../_services/login.service';
 
@@ -9,6 +10,8 @@ import { LoginService } from '../_services/login.service';
 })
 export class HomeComponent implements OnInit {
   model: any = {}
+
+  kurs!: Kurs
   osnovni: any = []
   master: any = []
   doktorski: any = []

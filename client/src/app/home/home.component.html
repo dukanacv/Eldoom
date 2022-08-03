@@ -43,23 +43,23 @@
         <tabset [justified]="true">
             <tab heading="Osnovne studije">
                 <ul>
-                    <a href="">
-                        <h5 *ngFor="let o of osnovni">📁{{o.naziv}}</h5>
-                    </a>
+                    <h5 *ngFor="let o of osnovni">
+                        <a [routerLink]="['/kurs', o.id]" routerLinkActive="router-link-active">📁{{o.naziv}}</a>
+                    </h5>
                 </ul>
             </tab>
             <tab heading="Master studije">
                 <ul>
-                    <a href="">
-                        <h5 *ngFor="let m of master">📁{{m.naziv}}</h5>
-                    </a>
+                    <h5 *ngFor="let m of master">
+                        <a [routerLink]="['/kurs', m.id]" routerLinkActive="router-link-active">{{m.naziv}}</a>
+                    </h5>
                 </ul>
             </tab>
             <tab heading="Doktorske studije">
                 <ul>
-                    <a href="">
-                        <h5 *ngFor="let d of doktorski">📁{{d.naziv}}</h5>
-                    </a>
+                    <h5 *ngFor="let d of doktorski">
+                        <a [routerLink]="['/kurs', d.id]" routerLinkActive="router-link-active">{{d.naziv}}</a>
+                    </h5>
                 </ul>
             </tab>
             <tab heading="Razno">📁Razno...</tab>

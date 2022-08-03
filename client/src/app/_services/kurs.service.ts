@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Kurs } from 'app/_models/kurs';
+import { Observable } from 'rxjs';
 
 
 const httpOptions = {
@@ -19,8 +20,8 @@ export class KursService {
 
   constructor(private http: HttpClient) { }
 
-  getOsnovni() {
-    return this.http.get(this.baseUrl + "kurs/osnovni")
+  getOsnovni(): Observable<Kurs[]> {
+    return this.http.get<Kurs[]>(this.baseUrl + "kurs/osnovni")
   }
 
   getMaster() {
