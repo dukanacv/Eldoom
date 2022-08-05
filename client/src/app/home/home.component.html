@@ -51,14 +51,14 @@
             <tab heading="Master studije">
                 <ul>
                     <h5 *ngFor="let m of master">
-                        <a [routerLink]="['/kurs', m.id]" routerLinkActive="router-link-active">{{m.naziv}}</a>
+                        <a [routerLink]="['/kurs', m.id]" routerLinkActive="router-link-active">💻 {{m.naziv}}</a>
                     </h5>
                 </ul>
             </tab>
             <tab heading="Doktorske studije">
                 <ul>
                     <h5 *ngFor="let d of doktorski">
-                        <a [routerLink]="['/kurs', d.id]" routerLinkActive="router-link-active">{{d.naziv}}</a>
+                        <a [routerLink]="['/kurs', d.id]" routerLinkActive="router-link-active">🎓 {{d.naziv}}</a>
                     </h5>
                 </ul>
             </tab>

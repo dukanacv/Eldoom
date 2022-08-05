@@ -13,5 +13,6 @@ namespace API
 
         public DbSet<Student> Students { get; set; }
         public DbSet<Kurs> Kursevi { get; set; }
+        public DbSet<Obavestenje> Obavestenja { get; set; }
     }
 }

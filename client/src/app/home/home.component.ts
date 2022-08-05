@@ -9,9 +9,7 @@ import { LoginService } from '../_services/login.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  model: any = {}
 
-  kurs!: Kurs
   osnovni: any = []
   master: any = []
   doktorski: any = []
