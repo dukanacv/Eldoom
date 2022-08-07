@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { RegisterService } from '../_services/register.service';
 
 
@@ -9,8 +10,15 @@ import { RegisterService } from '../_services/register.service';
 })
 export class RegisterComponent implements OnInit {
   model: any = {}
+  unsaved: boolean = true
 
-  constructor(private registerService: RegisterService) { }
+  @HostListener("window:beforeunload", ['$event']) unloadNotification($event: any) {
+    if (this.unsaved) {
+      $event.returnValue = true
+    }
+  }
+
+  constructor(private registerService: RegisterService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
   }
@@ -18,6 +26,9 @@ export class RegisterComponent implements OnInit {
   register() {
     this.registerService.register(this.model).subscribe(response => {
       console.log(response)
+      this.toastr.success("Vasa registracija je uspesna")
+    }, err => {
+      this.toastr.error("Svi parametri moraju biti uneti. E-mail adresa validna i unikatan broj indeksa.")
     })
   }
 
