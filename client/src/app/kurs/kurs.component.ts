@@ -19,7 +19,7 @@ export class KursComponent implements OnInit {
 
   getKurs() {
     this.kursService.getKurs(this.route.snapshot.paramMap.get("id")!).subscribe(kurs => {//iz url izvlaci id
-      this.kurs = kurs
+      this.kurs! = kurs
     })
   }
 }

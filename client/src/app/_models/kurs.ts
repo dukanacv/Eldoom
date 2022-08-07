@@ -1,5 +1,5 @@
 export interface Kurs {
-    Id: number
+    id: number
     naziv: string
     opis: string
     profesori_id_profesor: number
