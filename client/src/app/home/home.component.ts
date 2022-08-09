@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Kurs } from 'app/_models/kurs';
 import { KursService } from '../_services/kurs.service';
 import { LoginService } from '../_services/login.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
 
@@ -42,4 +41,6 @@ export class HomeComponent implements OnInit {
         this.doktorski = response
       }, err => console.log(err))
   }
+
+
 }
