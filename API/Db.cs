@@ -14,5 +14,12 @@ namespace API
         public DbSet<Student> Students { get; set; }
         public DbSet<Kurs> Kursevi { get; set; }
         public DbSet<Obavestenje> Obavestenja { get; set; }
+        public DbSet<KursPrijava> kurs_prijave { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<KursPrijava>()
+                .HasKey(c => new { c.students_id_student, c.kursevi_id_kurs, c.datum_prijave });
+        }
     }
 }

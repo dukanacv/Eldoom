@@ -33,9 +33,10 @@ export class LoginService {
       )
   }
 
-  getStudent() {
-    return this.currentStudent$
+  getStudentById(id: number) {
+    return this.http.get<Student>(this.baseUrl + "student/" + id)
   }
+
 
   setCurrentStudent(student: Student) {
     this.currentStudent.next(student)

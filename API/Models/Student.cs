@@ -1,8 +1,11 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace API.Models
 {
+    [Table("students")]
     public class Student
     {
 
@@ -29,5 +32,7 @@ namespace API.Models
         [StringLength(40, ErrorMessage = "Broj indeksa mora biti vazeci")]
         public string brIndexa { get; set; }
         public DateTime? datumRegistracije { get; set; } = DateTime.Now;
+
+        public List<KursPrijava> Kurs_Prijave { get; set; }
     }
 }
