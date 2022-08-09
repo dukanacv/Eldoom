@@ -26,6 +26,7 @@ export class LoginService {
         const student = response
         if (student) {
           localStorage.setItem("student", JSON.stringify(student))//kao sesija u php, samo sto je na client strani i ima otprilike 5MB
+          localStorage.setItem("id", student.id.toString())
           this.currentStudent.next(student)
           this.router.navigate(["/"])
         }
@@ -44,6 +45,7 @@ export class LoginService {
 
   logout() {
     localStorage.removeItem("student")
+    localStorage.removeItem("id")
     this.currentStudent.next(null)
   }
 }

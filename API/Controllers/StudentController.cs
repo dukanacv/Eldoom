@@ -85,6 +85,7 @@ namespace API.Controllers
 
             return new StudentDto
             {
+                Id = student.Id,
                 ime = student.ime,
                 prezime = student.prezime,
                 brIndexa = student.brIndexa,

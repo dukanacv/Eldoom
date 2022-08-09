@@ -13,7 +13,7 @@ export class KursComponent implements OnInit {
 
   kurs!: Kurs
 
-  kursPrijava: KursPrijava = { students_id_student: 3, kursevi_id_kurs: Number(this.route.snapshot.paramMap.get("id")) }
+  kursPrijava: KursPrijava = { students_id_student: Number(localStorage.getItem("id")), kursevi_id_kurs: Number(this.route.snapshot.paramMap.get("id")) }
 
   constructor(private kursService: KursService, private route: ActivatedRoute) { }
 
