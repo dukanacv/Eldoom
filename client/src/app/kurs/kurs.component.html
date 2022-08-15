@@ -19,6 +19,8 @@
                 <h5>Moji kursevi ⤵</h5>
                 <ul ng *ngFor="let kurs of studentKursevi">
                     <li><a href="/kurs/{{kurs.id}}">{{kurs.naziv}}({{kurs.pripadnost}})</a>
+                        <!-- [routerLink]="['/kurs', kurs.id]"
+                            routerLinkActive="router-link-active" NE RADI?!?!?!?!??-->
                     </li>
                 </ul>
             </div>
