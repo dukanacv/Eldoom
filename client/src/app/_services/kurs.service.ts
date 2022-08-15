@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Kurs } from 'app/_models/kurs';
 import { KursPrijava } from 'app/_models/kursprijava';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 
 
 const httpOptions = {
@@ -41,5 +41,10 @@ export class KursService {
 
   prijavaNaKurs(kursPrijava: KursPrijava) {
     return this.http.post(this.baseUrl + "kursprijava", kursPrijava, httpOptions)
+  }
+
+  getAllKurseviByStudentId(idStudent: number) {
+    return this.http
+      .get<Kurs[]>(this.baseUrl + "kursprijava/" + idStudent, httpOptions)
   }
 }

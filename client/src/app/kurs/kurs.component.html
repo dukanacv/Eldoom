@@ -15,10 +15,14 @@
                 <a href="#" class="list-group-item list-group-item-action">Ocene</a>
             </div>
             <div class="container">
-                Moji kursevi ⤵
+                <br>
+                <h5>Moji kursevi ⤵</h5>
+                <ul ng *ngFor="let kurs of studentKursevi">
+                    <li>{{kurs.naziv}}({{kurs.pripadnost}})</li>
+                </ul>
             </div>
         </div>
-        <div class="col-md-auto" style="width: 60%;">
+        <div class=" col-md-auto" style="width: 60%;">
             <div style="margin-left: 4rem;">
                 <app-obavestenje [kursId]="kurs.id"></app-obavestenje>
             </div>

@@ -12,6 +12,7 @@ import { KursService } from 'app/_services/kurs.service';
 export class KursComponent implements OnInit {
 
   kurs!: Kurs
+  studentKursevi!: Kurs[]
 
   kursPrijava: KursPrijava = { students_id_student: Number(localStorage.getItem("id")), kursevi_id_kurs: Number(this.route.snapshot.paramMap.get("id")) }
 
@@ -19,6 +20,7 @@ export class KursComponent implements OnInit {
 
   ngOnInit(): void {
     this.getKurs()
+    this.getAllKurseviByStudentId()
   }
 
   getKurs() {
@@ -31,5 +33,11 @@ export class KursComponent implements OnInit {
     this.kursService.prijavaNaKurs(this.kursPrijava).subscribe(response => {
       console.log(this.kursPrijava)
     }, err => console.log(err))
+  }
+
+  getAllKurseviByStudentId() {
+    this.kursService.getAllKurseviByStudentId(Number(localStorage.getItem("id"))).subscribe(response => {
+      this.studentKursevi = response
+    })
   }
 }

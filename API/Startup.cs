@@ -1,4 +1,5 @@
 using System.Text;
+using API.Interfaces;
 using API.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -43,6 +44,7 @@ namespace API
             services.AddCors();
 
             services.AddScoped<TokenService>();
+            services.AddScoped<KursService>();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer(options =>
