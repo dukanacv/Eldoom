@@ -33,12 +33,21 @@ export class KursComponent implements OnInit {
   prijavaNaKurs() {
     this.kursService.prijavaNaKurs(this.kursPrijava).subscribe(response => {
       console.log(this.toastr.success("Prijava na kurs je uspesna!"))
-    }, err => console.log(this.toastr.error("Vec ste prijavljeni na ovaj kurs")))
+      this.ngOnInit()
+    }, err => this.toastr.error("Vec ste prijavljeni na ovaj kurs"))
   }
 
   getAllKurseviByStudentId() {
     this.kursService.getAllKurseviByStudentId(Number(localStorage.getItem("id"))).subscribe(response => {
       this.studentKursevi = response
     })
+  }
+
+  odjavaSaKursa() {
+    this.kursService.odjavaSaKursa(Number(localStorage.getItem("id")), Number(this.route.snapshot.paramMap.get("id")))
+      .subscribe(response => {
+        this.toastr.success("Uspesno ste izbrisali kurs iz svojih prijava")
+        this.ngOnInit()
+      }, err => this.toastr.error("Nije moguce izbrisati kurs, jer niste prijavljeni na njega"))
   }
 }

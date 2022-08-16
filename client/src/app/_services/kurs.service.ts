@@ -47,4 +47,8 @@ export class KursService {
     return this.http
       .get<Kurs[]>(this.baseUrl + "kursprijava/" + idStudent, httpOptions)
   }
+
+  odjavaSaKursa(id_student: number, id_kurs: number) {
+    return this.http.delete(this.baseUrl + "kursprijava/odjava/" + id_student + "-" + id_kurs, httpOptions)
+  }
 }

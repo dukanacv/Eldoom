@@ -66,5 +66,33 @@ namespace API.Controllers
             return kurseviStudents;
 
         }
+
+        [HttpDelete("odjava/{id_student}-{id_kurs}")]
+        public async Task<ActionResult> OdajavaSaKursa(int id_student, int id_kurs)
+        {
+            if (await PrijavaPostoji(id_student, id_kurs) == false)
+            {
+                return BadRequest("Niste prijavljeni na ovaj kurs");
+            }
+
+            var kureviSaDatimId = await _db.kurs_prijave.Where(kp => kp.students_id_student == id_student).ToListAsync();
+
+            if (kureviSaDatimId == null)
+            {
+                return NotFound(0);
+            }
+
+            var konacni = kureviSaDatimId.Find(kp => kp.kursevi_id_kurs == id_kurs);
+
+            if (konacni != null)
+            {
+                _db.kurs_prijave.Remove(konacni);
+                await _db.SaveChangesAsync();
+                return Ok();
+            }
+
+            return BadRequest("Greska pri odjavljivanju sa kursa");
+        }
+
     }
 }
