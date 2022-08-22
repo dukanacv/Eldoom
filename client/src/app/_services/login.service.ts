@@ -52,7 +52,7 @@ export class LoginService {
           localStorage.setItem("profesor", JSON.stringify(profesor))
           localStorage.setItem("id", profesor.id.toString())
           this.currentProfesor.next(profesor)
-          this.router.navigate(["/"])
+          this.router.navigate(["/home-profesor"])
         }
       })
       )

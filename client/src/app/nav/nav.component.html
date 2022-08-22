@@ -26,6 +26,12 @@
                     style="margin-right: 2rem; background-color:  rgb(90, 145, 204);" type="button">Uloguj
                     se</button></a>
         </form>
+        <a href="/home-profesor">
+            <button class="btn btn-primary" style="margin-right: 2rem; background-color: red;"
+                *ngIf="(loginService._currentProfesor$ | async)">
+                Kontrolni panel profesora
+            </button>
+        </a>
 
         <div class="btn-group"
             *ngIf="(loginService._currentStudent$ | async) || (loginService._currentProfesor$ | async)" dropdown

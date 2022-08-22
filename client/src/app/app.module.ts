@@ -17,6 +17,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { KursComponent } from './kurs/kurs.component';
 import { ObavestenjeComponent } from './obavestenje/obavestenje.component';
 import { ProfesorLoginComponent } from './profesor-login/profesor-login.component';
+import { HomeProfesorComponent } from './home-profesor/home-profesor.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { ProfesorLoginComponent } from './profesor-login/profesor-login.componen
     RegisterComponent,
     KursComponent,
     ObavestenjeComponent,
-    ProfesorLoginComponent
+    ProfesorLoginComponent,
+    HomeProfesorComponent
   ],
   imports: [
     BrowserModule,
