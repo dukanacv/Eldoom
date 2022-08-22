@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Profesor } from './_models/profesor';
 import { Student } from './_models/student';
 import { LoginService } from './_services/login.service';
 
@@ -13,11 +14,19 @@ export class AppComponent implements OnInit {
   constructor(private http: HttpClient, private loginService: LoginService) { }
 
   ngOnInit(): void {
-    this.setCurrentStudent()
+    this.setCurrentUser()
   }
 
-  setCurrentStudent() {
+  setCurrentUser() {
     const student: Student = JSON.parse(localStorage.getItem("student")!)
-    this.loginService.setCurrentStudent(student)
+    const profesor: Profesor = JSON.parse(localStorage.getItem("profesor")!)
+
+    if (student != null) {
+      this.loginService.setCurrentStudent(student)
+    }
+
+    if (profesor != null) {
+      this.loginService.setCurrentProfesor(profesor)
+    }
   }
 }

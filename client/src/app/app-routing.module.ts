@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { KursComponent } from './kurs/kurs.component';
 import { LoginComponent } from './login/login.component';
+import { ProfesorLoginComponent } from './profesor-login/profesor-login.component';
 import { RegisterComponent } from './register/register.component';
 import { AuthGuard } from './_guards/auth.guard';
 import { UnsavedChangesGuard } from './_guards/unsaved-changes.guard';
@@ -10,6 +11,7 @@ import { UnsavedChangesGuard } from './_guards/unsaved-changes.guard';
 const routes: Routes = [
   { path: "", component: HomeComponent },
   { path: "login", component: LoginComponent },
+  { path: "profesor-login", component: ProfesorLoginComponent },
   { path: "register", component: RegisterComponent, canDeactivate: [UnsavedChangesGuard] },
   { path: "kurs/:id", component: KursComponent, canActivate: [AuthGuard] },
   { path: "**", component: HomeComponent }//wildcard route

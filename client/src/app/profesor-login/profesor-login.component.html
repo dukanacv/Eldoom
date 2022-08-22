@@ -1,0 +1,40 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-3 col-md-2"></div>
+        <div class="col-lg-6 col-md-8 login-box">
+            <div class="col-lg-12 login-key">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDTaugvwhAspHwEPN_UsBwu0X1SS3tPwFK5g&usqp=CAU"
+                    width="70" height="70" alt="ikona" style="margin-left: 1rem;" class="rounded-circle">
+            </div>
+            <div class="col-lg-12 login-title">
+                PANEL PROFESORA
+            </div>
+
+            <div class="col-lg-12 login-form">
+                <div class="col-lg-12 login-form">
+                    <form #loginForm="ngForm" (ngSubmit)="profesorLogin()" autocomplete="off">
+                        <div class="form-group">
+                            <label class="form-control-label">E-MAIL</label>
+                            <input type="text" name="email" [(ngModel)]="model.email" class="form-control"
+                                placeholder="Unesite vas e-mail...">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-control-label">PASSWORD</label>
+                            <input type="password" class="form-control" name="password" [(ngModel)]="model.password"
+                                placeholder="Unesite vasu lozinku...">
+                        </div>
+
+                        <div class="col-lg-12 loginbttm">
+                            <div class="col-lg-6 login-btm login-text">
+                                <!-- Error Message -->
+                            </div>
+                            <div class="col-lg-6 login-btm login-button">
+                                <button type="submit" class="btn btn-outline-primary">PRIJAVA</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-2"></div>
+        </div>
+    </div>

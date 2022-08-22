@@ -20,13 +20,16 @@
                 </li>
             </ul>
         </div>
-        <form class="form-inline" *ngIf="!(loginService._currentStudent$ | async)">
+        <form class="form-inline"
+            *ngIf="!(loginService._currentStudent$ | async) && !(loginService._currentProfesor$ | async)">
             <a href="/login"><button class="btn btn-primary"
                     style="margin-right: 2rem; background-color:  rgb(90, 145, 204);" type="button">Uloguj
                     se</button></a>
         </form>
 
-        <div class="btn-group" *ngIf="loginService._currentStudent$ | async" dropdown style="margin-right: 4.5rem;">
+        <div class="btn-group"
+            *ngIf="(loginService._currentStudent$ | async) || (loginService._currentProfesor$ | async)" dropdown
+            style="margin-right: 4.5rem;">
             <a class="dropdown-toggle text-light" dropdownToggle>Vise opcija</a>
             <div class="dropdown-menu" *dropdownMenu>
                 <a class="dropdown-item">Pogledaj profil</a>

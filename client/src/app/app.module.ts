@@ -16,6 +16,7 @@ import { FormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { KursComponent } from './kurs/kurs.component';
 import { ObavestenjeComponent } from './obavestenje/obavestenje.component';
+import { ProfesorLoginComponent } from './profesor-login/profesor-login.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { ObavestenjeComponent } from './obavestenje/obavestenje.component';
     FooterComponent,
     RegisterComponent,
     KursComponent,
-    ObavestenjeComponent
+    ObavestenjeComponent,
+    ProfesorLoginComponent
   ],
   imports: [
     BrowserModule,

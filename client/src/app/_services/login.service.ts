@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { Profesor } from 'app/_models/profesor';
 import { map, ReplaySubject } from 'rxjs';
 import { Student } from '../_models/student';
 
@@ -10,11 +11,19 @@ import { Student } from '../_models/student';
 export class LoginService {
 
   baseUrl = "https://localhost:5001/api/"
+
   private currentStudent = new ReplaySubject<Student | null>(1)
   private currentStudent$ = this.currentStudent.asObservable()//$ je znak za promenljive tipa observable
 
+  private currentProfesor = new ReplaySubject<Profesor | null>(1)
+  private currentProfesor$ = this.currentProfesor.asObservable()
+
   public get _currentStudent$() {
     return this.currentStudent$
+  }
+
+  public get _currentProfesor$() {
+    return this.currentProfesor$
   }
 
   constructor(private http: HttpClient, private router: Router) { }
@@ -34,6 +43,21 @@ export class LoginService {
       )
   }
 
+  profesorLogin(model: any) {
+    return this.http
+      .post<Profesor>(this.baseUrl + "profesor/login", model)
+      .pipe(map((response: Profesor) => {
+        const profesor = response
+        if (profesor) {
+          localStorage.setItem("profesor", JSON.stringify(profesor))
+          localStorage.setItem("id", profesor.id.toString())
+          this.currentProfesor.next(profesor)
+          this.router.navigate(["/"])
+        }
+      })
+      )
+  }
+
   getStudentById(id: number) {
     return this.http.get<Student>(this.baseUrl + "student/" + id)
   }
@@ -43,9 +67,16 @@ export class LoginService {
     this.currentStudent.next(student)
   }
 
+  setCurrentProfesor(profesor: Profesor) {
+    this.currentProfesor.next(profesor)
+  }
+
   logout() {
     localStorage.removeItem("student")
     localStorage.removeItem("id")
     this.currentStudent.next(null)
+
+    localStorage.removeItem("profesor")
+    this.currentProfesor.next(null)
   }
 }
