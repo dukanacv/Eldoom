@@ -15,6 +15,7 @@ namespace API
         public DbSet<Kurs> Kursevi { get; set; }
         public DbSet<Obavestenje> Obavestenja { get; set; }
         public DbSet<KursPrijava> kurs_prijave { get; set; }
+        public DbSet<Profesor> Profesori { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

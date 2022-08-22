@@ -1,7 +1,7 @@
 <div class="jumbotron">
     <h1 class="display-4">{{kurs.naziv | titlecase}}</h1>
     <p class="lead">{{kurs.opis}}</p>
-    <button class="btn btn-primary" [routerLink]="" (click)="prijavaNaKurs()">Dodaj u Moje Kurseve</button>
+    <button class="btn btn-primary" (click)="prijavaNaKurs()">Dodaj u Moje Kurseve</button>
     <button class="btn btn-warning" style="float: right;" (click)="odjavaSaKursa()">Izbrisi iz mojih
         prijava</button>
     <hr class=" my-4">
