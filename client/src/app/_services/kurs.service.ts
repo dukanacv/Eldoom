@@ -11,6 +11,12 @@ const httpOptions = {
   })
 }
 
+const httpOptionsProfesor = {
+  headers: new HttpHeaders({
+    Authorization: "Bearer " + JSON.parse(localStorage.getItem('profesor') || '{}').token
+  })
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -50,5 +56,9 @@ export class KursService {
 
   odjavaSaKursa(id_student: number, id_kurs: number) {
     return this.http.delete(this.baseUrl + "kursprijava/odjava/" + id_student + "-" + id_kurs, httpOptions)
+  }
+
+  getKurseviByProfesorId(id_profesor: number) {
+    return this.http.get<Kurs[]>(this.baseUrl + "kurs/profesor/" + id_profesor, httpOptionsProfesor);
   }
 }

@@ -41,5 +41,11 @@ namespace API.Controllers
         {
             return await this._db.Kursevi.FindAsync(id);
         }
+
+        [HttpGet("profesor/{id}")]
+        public async Task<ActionResult<IEnumerable<Kurs>>> GetAllKurseviByProfesorId(int id)
+        {
+            return await this._db.Kursevi.Where(k => k.profesori_id_profesor == id).ToListAsync();
+        }
     }
 }

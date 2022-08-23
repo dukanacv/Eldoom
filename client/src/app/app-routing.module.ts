@@ -6,7 +6,7 @@ import { KursComponent } from './kurs/kurs.component';
 import { LoginComponent } from './login/login.component';
 import { ProfesorLoginComponent } from './profesor-login/profesor-login.component';
 import { RegisterComponent } from './register/register.component';
-import { AuthGuard } from './_guards/auth.guard';
+import { KursGuard } from './_guards/kurs.guard';
 import { ProfesorLoggedinGuard } from './_guards/profesor-loggedin.guard';
 import { ProfesorLoginGuard } from './_guards/profesor-login.guard';
 import { UnsavedChangesGuard } from './_guards/unsaved-changes.guard';
@@ -16,7 +16,7 @@ const routes: Routes = [
   { path: "login", component: LoginComponent, canActivate: [ProfesorLoggedinGuard] },
   { path: "profesor-login", component: ProfesorLoginComponent, canActivate: [ProfesorLoggedinGuard] },
   { path: "register", component: RegisterComponent, canDeactivate: [UnsavedChangesGuard] },
-  { path: "kurs/:id", component: KursComponent, canActivate: [AuthGuard] },
+  { path: "kurs/:id", component: KursComponent, canActivate: [KursGuard] },
   { path: "home-profesor", component: HomeProfesorComponent, canActivate: [ProfesorLoginGuard] },
   { path: "**", component: HomeComponent }//wildcard route
 ];
