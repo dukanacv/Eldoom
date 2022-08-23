@@ -32,4 +32,11 @@ export class ObavestenjeComponent implements OnInit {
       this.ngOnInit()
     }, err => console.log(err))
   }
+
+  /*postaviObavestenje() {
+    this.obavestenjeService.postaviObavestenje().subscribe(response => {
+      console.log(this.toastr.success("Prijava na kurs je uspesna!"))
+      this.ngOnInit()
+    }, err => this.toastr.error("Vec ste prijavljeni na ovaj kurs"))
+  }*/
 }

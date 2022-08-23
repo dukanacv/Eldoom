@@ -46,5 +46,21 @@ namespace API.Controllers
 
             return BadRequest("Greska pri brisanju obavestenja.");
         }
+
+        [HttpPost("{id_kursa}")]
+        public async Task<ActionResult<Obavestenje>> PostaviObavestenje(Obavestenje obavestenje, [FromRoute] int id_kursa)
+        {
+            var novoObavestenje = new Obavestenje
+            {
+                naslov = obavestenje.naslov,
+                sadrzaj = obavestenje.sadrzaj,
+                kursevi_id_kurs = id_kursa
+            };
+
+            _db.Obavestenja.Add(novoObavestenje);
+            await _db.SaveChangesAsync();
+
+            return novoObavestenje;
+        }
     }
 }

@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Kurs } from 'app/_models/kurs';
 import { KursPrijava } from 'app/_models/kursprijava';
+import { Obavestenje } from 'app/_models/obavestenje';
 import { map, Observable } from 'rxjs';
 
 
@@ -15,6 +16,10 @@ const httpOptionsProfesor = {
   headers: new HttpHeaders({
     Authorization: "Bearer " + JSON.parse(localStorage.getItem('profesor') || '{}').token
   })
+}
+
+const httpOptions1 = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 }
 
 @Injectable({
@@ -60,5 +65,9 @@ export class KursService {
 
   getKurseviByProfesorId(id_profesor: number) {
     return this.http.get<Kurs[]>(this.baseUrl + "kurs/profesor/" + id_profesor, httpOptionsProfesor);
+  }
+
+  postaviObavestenje(obavestenje: any, id_kursa: number) {
+    return this.http.post(this.baseUrl + "obavestenje/" + id_kursa, obavestenje, httpOptionsProfesor)
   }
 }

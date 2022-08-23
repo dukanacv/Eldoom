@@ -30,4 +30,5 @@ export class ObavestenjeService {
   deleteObavestenjeById(id_obavestenja: number) {
     return this.http.delete(this.baseUrl + "obavestenje/" + id_obavestenja, httpOptionsProfesor)
   }
+
 }
