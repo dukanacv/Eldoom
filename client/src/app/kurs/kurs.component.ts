@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Kurs } from 'app/_models/kurs';
 import { KursPrijava } from 'app/_models/kursprijava';
 import { KursService } from 'app/_services/kurs.service';
+import { LoginService } from 'app/_services/login.service';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -17,7 +18,8 @@ export class KursComponent implements OnInit {
 
   kursPrijava: KursPrijava = { students_id_student: Number(localStorage.getItem("id")), kursevi_id_kurs: Number(this.route.snapshot.paramMap.get("id")) }
 
-  constructor(private kursService: KursService, private route: ActivatedRoute, private toastr: ToastrService) { }
+  constructor(private kursService: KursService, private route: ActivatedRoute,
+    private toastr: ToastrService, public loginService: LoginService) { }
 
   ngOnInit(): void {
     this.getKurs()

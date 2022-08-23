@@ -1,8 +1,11 @@
 <div class="jumbotron">
     <h1 class="display-4">{{kurs.naziv | titlecase}}</h1>
     <p class="lead">{{kurs.opis}}</p>
-    <button class="btn btn-primary" (click)="prijavaNaKurs()">Dodaj u Moje Kurseve</button>
-    <button class="btn btn-warning" style="float: right;" (click)="odjavaSaKursa()">Izbrisi iz mojih
+    <button class="btn btn-primary" (click)="prijavaNaKurs()" *ngIf="(loginService._currentStudent$ | async)">Dodaj u
+        Moje
+        Kurseve</button>
+    <button class="btn btn-warning" style="float: right;" (click)="odjavaSaKursa()"
+        *ngIf="(loginService._currentStudent$ | async)">Izbrisi iz mojih
         prijava</button>
     <hr class=" my-4">
 </div>
@@ -18,13 +21,15 @@
             </div>
             <div class="container">
                 <br>
-                <h5>Moji Kursevi ⤵</h5>
-                <ul ng *ngFor="let kurs of studentKursevi">
-                    <li><a href="/kurs/{{kurs.id}}">{{kurs.naziv}}({{kurs.pripadnost}})</a>
-                        <!-- [routerLink]="['/kurs', kurs.id]"
+                <div *ngIf="(loginService._currentStudent$ | async)">
+                    <h5>Moji Kursevi ⤵</h5>
+                    <ul ng *ngFor="let kurs of studentKursevi">
+                        <li><a href="/kurs/{{kurs.id}}">{{kurs.naziv}}({{kurs.pripadnost}})</a>
+                            <!-- [routerLink]="['/kurs', kurs.id]"
                             routerLinkActive="router-link-active" NE RADI?!?!?!?!??-->
-                    </li>
-                </ul>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
         <div class=" col-md-auto" style="width: 60%;">
