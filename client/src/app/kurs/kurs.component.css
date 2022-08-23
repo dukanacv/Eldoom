@@ -1,0 +1,19 @@
+.btn1:hover {
+    transform: rotateY(15deg);
+    box-shadow: -15px 0 15px #035177;
+}
+
+.btn1 {
+    display: block;
+    margin: 40px 0;
+    width: 150px;
+    height: 40px;
+    border: none;
+    background-color: #046b9f;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 6px;
+    outline: none;
+    cursor: pointer;
+    transition: .3s linear;
+}

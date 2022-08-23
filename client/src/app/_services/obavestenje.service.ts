@@ -8,16 +8,26 @@ const httpOptions = {
   })
 }
 
+const httpOptionsProfesor = {
+  headers: new HttpHeaders({
+    Authorization: "Bearer " + JSON.parse(localStorage.getItem('profesor') || '{}').token
+  })
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class ObavestenjeService {
 
-  baseUrl = "https://localhost:5001/api/obavestenje/"
+  baseUrl = "https://localhost:5001/api/"
 
   constructor(private http: HttpClient) { }
 
   getObavestenjaByKursId(kursId: number) {
-    return this.http.get<Obavestenje[]>(this.baseUrl + "sva/" + kursId, httpOptions)
+    return this.http.get<Obavestenje[]>(this.baseUrl + "obavestenje/sva/" + kursId, httpOptions)
+  }
+
+  deleteObavestenjeById(id_obavestenja: number) {
+    return this.http.delete(this.baseUrl + "obavestenje/" + id_obavestenja, httpOptionsProfesor)
   }
 }

@@ -31,5 +31,20 @@ namespace API.Controllers
 
             return await this._db.Obavestenja.Where(lista => lista.kursevi_id_kurs == kurs_id).ToListAsync();
         }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> DeleteObavestenjeById(int id)
+        {
+            var obavestenjeZaObrisati = await _db.Obavestenja.FindAsync(id);
+
+            _db.Obavestenja.Remove(obavestenjeZaObrisati);
+
+            if (await _db.SaveChangesAsync() > 0)
+            {
+                return Ok();
+            }
+
+            return BadRequest("Greska pri brisanju obavestenja.");
+        }
     }
 }

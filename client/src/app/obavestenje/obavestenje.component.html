@@ -1,6 +1,9 @@
 <div class="container">
     <h6 *ngFor="let o of obavestenja">
         {{o.naslov}} <br><br>
+        <button (click)="deleteObavestenjeById(o.id)"
+            style="float: right; margin-right: 2rem; width: 1rem; height: 1rem; border: none;" type="button"
+            class="btn">❌</button>
         {{o.sadrzaj}}
         <hr>
     </h6>
