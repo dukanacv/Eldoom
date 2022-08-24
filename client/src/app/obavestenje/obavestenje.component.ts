@@ -1,8 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { Obavestenje } from 'app/_models/obavestenje';
 import { ObavestenjeService } from 'app/_services/obavestenje.service';
 import { Kurs } from "app/_models/kurs"
 import { ToastrService } from 'ngx-toastr';
+import { LoginService } from 'app/_services/login.service';
 
 @Component({
   selector: 'app-obavestenje',
@@ -10,11 +11,10 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./obavestenje.component.css']
 })
 export class ObavestenjeComponent implements OnInit {
-
   obavestenja!: Obavestenje[]
   @Input() kursId!: number;//from parent component
 
-  constructor(private obavestenjeService: ObavestenjeService, private toastr: ToastrService) { }
+  constructor(private obavestenjeService: ObavestenjeService, private toastr: ToastrService, public loginService: LoginService) { }
 
   ngOnInit(): void {
     this.getObavestenjaByKursId()
@@ -33,10 +33,5 @@ export class ObavestenjeComponent implements OnInit {
     }, err => console.log(err))
   }
 
-  /*postaviObavestenje() {
-    this.obavestenjeService.postaviObavestenje().subscribe(response => {
-      console.log(this.toastr.success("Prijava na kurs je uspesna!"))
-      this.ngOnInit()
-    }, err => this.toastr.error("Vec ste prijavljeni na ovaj kurs"))
-  }*/
+
 }

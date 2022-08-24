@@ -4,6 +4,7 @@ import { HomeProfesorComponent } from './home-profesor/home-profesor.component';
 import { HomeComponent } from './home/home.component';
 import { KursComponent } from './kurs/kurs.component';
 import { LoginComponent } from './login/login.component';
+import { ObavestenjeEditComponent } from './obavestenje-edit/obavestenje-edit.component';
 import { ProfesorLoginComponent } from './profesor-login/profesor-login.component';
 import { RegisterComponent } from './register/register.component';
 import { KursGuard } from './_guards/kurs.guard';
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: "register", component: RegisterComponent, canDeactivate: [UnsavedChangesGuard] },
   { path: "kurs/:id", component: KursComponent, canActivate: [KursGuard] },
   { path: "home-profesor", component: HomeProfesorComponent, canActivate: [ProfesorLoginGuard] },
+  { path: "obavestenje-edit/:id", component: ObavestenjeEditComponent, canActivate: [ProfesorLoginGuard] },
   { path: "**", component: HomeComponent }//wildcard route
 ];
 

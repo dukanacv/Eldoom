@@ -27,8 +27,15 @@ export class ObavestenjeService {
     return this.http.get<Obavestenje[]>(this.baseUrl + "obavestenje/sva/" + kursId, httpOptions)
   }
 
+  getObavestenjeById(id_obavestenja: number) {
+    return this.http.get(this.baseUrl + "obavestenje/" + id_obavestenja, httpOptionsProfesor)
+  }
+
   deleteObavestenjeById(id_obavestenja: number) {
     return this.http.delete(this.baseUrl + "obavestenje/" + id_obavestenja, httpOptionsProfesor)
   }
 
+  izmeniObavestenje(obavestenje: any, id_obavestenja: number) {
+    return this.http.put(this.baseUrl + "obavestenje/" + id_obavestenja, obavestenje, httpOptionsProfesor)
+  }
 }

@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using API.Models;
+using API.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,8 +13,10 @@ namespace API.Controllers
     public class ObavestenjeController : ControllerBase
     {
         private readonly Db _db;
-        public ObavestenjeController(Db db)
+        private readonly ObavestenjeService _obavestenjeService;
+        public ObavestenjeController(Db db, ObavestenjeService obavestenjeService)
         {
+            _obavestenjeService = obavestenjeService;
             _db = db;
         }
 
@@ -61,6 +64,24 @@ namespace API.Controllers
             await _db.SaveChangesAsync();
 
             return novoObavestenje;
+        }
+
+        [HttpPut("{id_obavestenja}")]
+        public async Task<ActionResult<Obavestenje>> UpdateObavestenje(Obavestenje obavestenje, [FromRoute] int id_obavestenja)
+        {
+            var obavestenjeZaUpdate = await _db.Obavestenja.FindAsync(id_obavestenja);
+
+            obavestenjeZaUpdate.naslov = obavestenje.naslov;
+            obavestenjeZaUpdate.sadrzaj = obavestenje.sadrzaj;
+
+            _obavestenjeService.Update(obavestenjeZaUpdate);
+
+            if (await _db.SaveChangesAsync() > 0)
+            {
+                return Ok();
+            }
+
+            return BadRequest("Greska pri izmeni obavestenja.");
         }
     }
 }

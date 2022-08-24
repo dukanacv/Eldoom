@@ -45,6 +45,7 @@ namespace API
 
             services.AddScoped<TokenService>();
             services.AddScoped<KursService>();
+            services.AddScoped<ObavestenjeService>();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer(options =>
