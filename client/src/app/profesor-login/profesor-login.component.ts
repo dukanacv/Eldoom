@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from 'app/_services/login.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-profesor-login',
@@ -9,7 +10,7 @@ import { LoginService } from 'app/_services/login.service';
 export class ProfesorLoginComponent implements OnInit {
   model: any = {}
 
-  constructor(public loginService: LoginService) { }
+  constructor(public loginService: LoginService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
   }
@@ -17,7 +18,7 @@ export class ProfesorLoginComponent implements OnInit {
   profesorLogin() {
     this.loginService.profesorLogin(this.model).subscribe(response => {
       console.log(response)
-    }, err => console.log(err))
+    }, err => this.toastr.error("Uneti parametri nisu validni. Pokusajte ponovo."))
   }
 
   profesorLogout() {

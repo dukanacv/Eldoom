@@ -31,9 +31,27 @@
 
     <div class="container" style="margin-top: 2rem;" *ngIf="!(loginService._currentStudent$ | async)">
         <tabset [justified]="true">
-            <tab heading="Osnovne studije">Lista osnovnih...</tab>
-            <tab heading="Master studije">Lista master...</tab>
-            <tab heading="Doktorske studije">Lista doktorskih...</tab>
+            <tab heading="Osnovne studije">
+                <ul>
+                    <p *ngFor="let o of osnovni">
+                        📁{{o.naziv}} -> {{o.opis}}
+                    </p>
+                </ul>
+            </tab>
+            <tab heading="Master studije">
+                <ul>
+                    <p *ngFor="let m of master">
+                        💻 {{m.naziv}} -> {{m.opis}}
+                    </p>
+                </ul>
+            </tab>
+            <tab heading="Doktorske studije">
+                <ul>
+                    <p *ngFor="let d of doktorski">
+                        🎓{{d.naziv}} -> {{d.opis}}
+                    </p>
+                </ul>
+            </tab>
             <tab heading="Razno">Razno...</tab>
         </tabset>
     </div>

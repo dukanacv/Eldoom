@@ -7,6 +7,7 @@ import { LoginComponent } from './login/login.component';
 import { ObavestenjeEditComponent } from './obavestenje-edit/obavestenje-edit.component';
 import { ProfesorLoginComponent } from './profesor-login/profesor-login.component';
 import { RegisterComponent } from './register/register.component';
+import { AuthGuard } from './_guards/auth.guard';
 import { KursGuard } from './_guards/kurs.guard';
 import { ProfesorLoggedinGuard } from './_guards/profesor-loggedin.guard';
 import { ProfesorLoginGuard } from './_guards/profesor-login.guard';
