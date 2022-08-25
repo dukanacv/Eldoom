@@ -70,4 +70,8 @@ export class KursService {
   postaviObavestenje(obavestenje: any, id_kursa: number) {
     return this.http.post(this.baseUrl + "obavestenje/" + id_kursa, obavestenje, httpOptionsProfesor)
   }
+
+  getKurseviIdByProfesorId(id_profesor: number) {
+    return this.http.get<number[]>(this.baseUrl + "kurs/profesor-kurs/" + id_profesor, httpOptionsProfesor)
+  }
 }

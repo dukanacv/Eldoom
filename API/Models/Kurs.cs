@@ -13,6 +13,7 @@ namespace API.Models
         public int profesori_id_profesor { get; set; }
         public string pripadnost { get; set; }
 
-        public List<KursPrijava> KursPrijavas { get; set; }
+
+
     }
 }

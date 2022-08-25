@@ -19,6 +19,7 @@ import { ObavestenjeComponent } from './obavestenje/obavestenje.component';
 import { ProfesorLoginComponent } from './profesor-login/profesor-login.component';
 import { HomeProfesorComponent } from './home-profesor/home-profesor.component';
 import { ObavestenjeEditComponent } from './obavestenje-edit/obavestenje-edit.component';
+import { KursGuard } from './_guards/kurs.guard';
 
 @NgModule({
   declarations: [
