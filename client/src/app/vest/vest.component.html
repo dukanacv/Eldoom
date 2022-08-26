@@ -1,0 +1,8 @@
+<ul class="list-group list-group-flush" *ngFor="let v of vesti">
+    <hr>
+    <li class="list-group-item">
+        <a href=""><strong>{{v.naslov}}</strong></a>
+        <br>
+        <small class="text-muted">{{v.datum_postavljanja | date: 'dd/MM/yyyy HH:mm'}}</small>
+    </li>
+</ul>

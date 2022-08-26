@@ -27,9 +27,6 @@ const httpOptions1 = {
 })
 
 export class KursService {
-
-  private options = { headers: new HttpHeaders().set('Content-Type', 'application/json') };
-
   baseUrl = "https://localhost:5001/api/"
 
   constructor(private http: HttpClient) { }
