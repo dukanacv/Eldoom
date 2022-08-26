@@ -18,10 +18,6 @@ const httpOptionsProfesor = {
   })
 }
 
-const httpOptions1 = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-}
-
 @Injectable({
   providedIn: 'root'
 })
@@ -70,5 +66,9 @@ export class KursService {
 
   getKurseviIdByProfesorId(id_profesor: number) {
     return this.http.get<number[]>(this.baseUrl + "kurs/profesor-kurs/" + id_profesor, httpOptionsProfesor)
+  }
+
+  postaviVest(vest: any, id_profesora: number, id_kursa: number) {
+    return this.http.post(this.baseUrl + "vesti/" + id_profesora + "-" + id_kursa, vest, httpOptionsProfesor)
   }
 }

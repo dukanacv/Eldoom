@@ -21,7 +21,6 @@ export class VestComponent implements OnInit {
     return this.vestService.getVestiByKursId(Number(this.route.snapshot.paramMap.get("id")))
       .subscribe(response => {
         this.vesti = response
-        console.log(this.vesti)
       }, err => console.log(err))
   }
 

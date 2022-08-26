@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Kurs } from 'app/_models/kurs';
 import { KursPrijava } from 'app/_models/kursprijava';
 import { Obavestenje } from 'app/_models/obavestenje';
+import { Vest } from 'app/_models/vest';
 import { KursService } from 'app/_services/kurs.service';
 import { LoginService } from 'app/_services/login.service';
 import { ToastrService } from 'ngx-toastr';
@@ -18,10 +19,12 @@ export class KursComponent implements OnInit {
   studentKursevi!: Kurs[]
 
   isShown: boolean = false
+  isDodajVest: boolean = false
 
   kursPrijava: KursPrijava = { students_id_student: Number(localStorage.getItem("id")), kursevi_id_kurs: Number(this.route.snapshot.paramMap.get("id")) }
 
   obavestenje: any = {}
+  vest: any = {}
 
   currentUrl = this.router.url;
 
@@ -64,6 +67,10 @@ export class KursComponent implements OnInit {
     this.isShown = !this.isShown;
   }
 
+  toggleDodajVest() {
+    this.isDodajVest = !this.isDodajVest
+  }
+
   postaviObavestenje() {
     this.kursService.postaviObavestenje(this.obavestenje, Number(this.route.snapshot.paramMap.get("id")))
       .subscribe(response => {
@@ -74,5 +81,15 @@ export class KursComponent implements OnInit {
       }, err => {
         this.toastr.error("Greska: Nije moguce dodati obavestenje...")
       })
+  }
+
+  postaviVest() {
+    this.kursService.postaviVest(this.vest, Number(localStorage.getItem("id")), Number(this.route.snapshot.paramMap.get("id")))
+      .subscribe(response => {
+        this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+          this.router.navigate([this.currentUrl]);
+        });
+        this.toastr.success("Uspesno ste postavili vest!")
+      }, err => console.log(err))
   }
 }
