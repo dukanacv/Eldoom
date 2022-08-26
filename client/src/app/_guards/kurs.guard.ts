@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class KursGuard implements CanActivate {
-  constructor(private toastr: ToastrService, private kursService: KursService) { }
+  constructor(private toastr: ToastrService, private kursService: KursService, private router: Router) { }
 
   id_kurs!: string
   id_kurseva!: number[]
@@ -33,6 +33,7 @@ export class KursGuard implements CanActivate {
               continue
             }
             observer.next(false)
+            this.router.navigate(['home-profesor']);
             this.toastr.error("Ne mozete pristupiti kursu koji nije Vas.")
             return
           })

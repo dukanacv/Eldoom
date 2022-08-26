@@ -69,7 +69,6 @@ export class KursComponent implements OnInit {
       .subscribe(response => {
         this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
           this.router.navigate([this.currentUrl]);
-          console.log(this.currentUrl);
         });
         this.toastr.success("Uspesno ste postavili obavestenje!")
       }, err => {
