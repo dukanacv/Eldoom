@@ -48,6 +48,11 @@ namespace API.Controllers
             return await _db.kurs_prijave.AnyAsync(kp => kp.students_id_student == id_student && kp.kursevi_id_kurs == id_kurs);
         }
 
+        private async Task<bool> ProfesorPrijavaPostoji(int id_student, int id_kurs)
+        {
+            return await _db.profesor_prijave.AnyAsync(pp => pp.students_id_student == id_student && pp.kursevi_id_kurs == id_kurs);
+        }
+
         [HttpGet("{id}")]
         public async Task<ActionResult<List<Kurs>>> GetAllKurseviByStudentId(int id)
         {
@@ -92,6 +97,45 @@ namespace API.Controllers
             }
 
             return BadRequest("Greska pri odjavljivanju sa kursa");
+        }
+
+        [HttpPost("profesor")]
+        public async Task<ActionResult<ProfesorPrijava>> PosaljiPrijavuProfesoru([FromBody] KursPrijava kursPrijava1)
+        {
+
+            if (await PrijavaPostoji(kursPrijava1.students_id_student, kursPrijava1.kursevi_id_kurs))
+            {
+                return BadRequest("Student je vec prijavljen na ovaj kurs");
+            }
+            if (await ProfesorPrijavaPostoji(kursPrijava1.students_id_student, kursPrijava1.kursevi_id_kurs))
+            {
+                return BadRequest("Prijava vec postoji");
+            }
+
+            var id_profesora = await _kursService.GetProfesorIdByKursId(kursPrijava1.kursevi_id_kurs);
+
+            var brIndex = _db.Students
+                .Where(s => s.Id == kursPrijava1.students_id_student)
+                .Select(s => s.brIndexa).ToString();
+
+            var profesorPrijava = new ProfesorPrijava
+            {
+                students_id_student = kursPrijava1.students_id_student,
+                kursevi_id_kurs = kursPrijava1.kursevi_id_kurs,
+                profesori_id_profesor = id_profesora,
+                student_brIndexa = brIndex
+            };
+
+            _db.profesor_prijave.Add(profesorPrijava);
+            await _db.SaveChangesAsync();
+
+            return profesorPrijava;
+        }
+
+        [HttpGet("profesor/{id}")]
+        public async Task<ActionResult<IEnumerable<ProfesorPrijava>>> GetAllProfesorPrijave(int id)
+        {
+            return await this._db.profesor_prijave.Where(pp => pp.profesori_id_profesor == id).ToListAsync();
         }
 
     }

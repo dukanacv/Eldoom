@@ -21,6 +21,7 @@ import { HomeProfesorComponent } from './home-profesor/home-profesor.component';
 import { ObavestenjeEditComponent } from './obavestenje-edit/obavestenje-edit.component';
 import { KursGuard } from './_guards/kurs.guard';
 import { VestComponent } from './vest/vest.component';
+import { ProfesorPrijavaComponent } from './profesor-prijava/profesor-prijava.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { VestComponent } from './vest/vest.component';
     ProfesorLoginComponent,
     HomeProfesorComponent,
     ObavestenjeEditComponent,
-    VestComponent
+    VestComponent,
+    ProfesorPrijavaComponent
   ],
   imports: [
     BrowserModule,

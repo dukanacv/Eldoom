@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Kurs } from 'app/_models/kurs';
 import { KursPrijava } from 'app/_models/kursprijava';
 import { Obavestenje } from 'app/_models/obavestenje';
+import { ProfesorPrijava } from 'app/_models/profesorprijava';
 import { map, Observable } from 'rxjs';
 
 
@@ -70,5 +71,9 @@ export class KursService {
 
   postaviVest(vest: any, id_profesora: number, id_kursa: number) {
     return this.http.post(this.baseUrl + "vesti/" + id_profesora + "-" + id_kursa, vest, httpOptionsProfesor)
+  }
+
+  getProfesorPrijave(id_profesor: number) {
+    return this.http.get<ProfesorPrijava[]>(this.baseUrl + "kursprijava/profesor/" + id_profesor, httpOptionsProfesor);
   }
 }

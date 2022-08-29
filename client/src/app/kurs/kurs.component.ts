@@ -1,9 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Kurs } from 'app/_models/kurs';
 import { KursPrijava } from 'app/_models/kursprijava';
-import { Obavestenje } from 'app/_models/obavestenje';
-import { Vest } from 'app/_models/vest';
 import { KursService } from 'app/_services/kurs.service';
 import { LoginService } from 'app/_services/login.service';
 import { ToastrService } from 'ngx-toastr';
@@ -40,13 +38,6 @@ export class KursComponent implements OnInit {
     this.kursService.getKurs(this.route.snapshot.paramMap.get("id")!).subscribe(kurs => {//iz url izvlaci id
       this.kurs! = kurs
     })
-  }
-
-  prijavaNaKurs() {
-    this.kursService.prijavaNaKurs(this.kursPrijava).subscribe(response => {
-      console.log(this.toastr.success("Prijava na kurs je uspesna!"))
-      this.ngOnInit()
-    }, err => this.toastr.error("Vec ste prijavljeni na ovaj kurs"))
   }
 
   getAllKurseviByStudentId() {

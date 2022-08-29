@@ -6,6 +6,7 @@ import { KursComponent } from './kurs/kurs.component';
 import { LoginComponent } from './login/login.component';
 import { ObavestenjeEditComponent } from './obavestenje-edit/obavestenje-edit.component';
 import { ProfesorLoginComponent } from './profesor-login/profesor-login.component';
+import { ProfesorPrijavaComponent } from './profesor-prijava/profesor-prijava.component';
 import { RegisterComponent } from './register/register.component';
 import { AuthGuard } from './_guards/auth.guard';
 import { KursGuard } from './_guards/kurs.guard';
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: "kurs/:id", component: KursComponent, canActivate: [KursGuard] },
   { path: "home-profesor", component: HomeProfesorComponent, canActivate: [ProfesorLoginGuard] },
   { path: "obavestenje-edit/:id", component: ObavestenjeEditComponent, canActivate: [ProfesorLoginGuard] },
+  { path: "profesor-prijava", component: ProfesorPrijavaComponent, canActivate: [ProfesorLoginGuard] },
   { path: "**", component: HomeComponent }//wildcard route
 ];
 
