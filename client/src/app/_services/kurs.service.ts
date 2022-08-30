@@ -76,4 +76,8 @@ export class KursService {
   getProfesorPrijave(id_profesor: number) {
     return this.http.get<ProfesorPrijava[]>(this.baseUrl + "kursprijava/profesor/" + id_profesor, httpOptionsProfesor);
   }
+
+  posaljiPrijavuProfesoru(kursPrijava: any) {
+    return this.http.post(this.baseUrl + "kursprijava/profesor", kursPrijava, httpOptions)
+  }
 }

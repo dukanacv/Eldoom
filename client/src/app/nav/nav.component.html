@@ -39,7 +39,7 @@
             <a class="dropdown-toggle text-light" dropdownToggle>Vise opcija</a>
             <div class="dropdown-menu" *dropdownMenu>
                 <a href="/profesor-prijava" class="dropdown-item"
-                    *ngIf="loginService._currentProfesor$ | async">Pogledaj profil</a>
+                    *ngIf="loginService._currentProfesor$ | async">Pogledaj prijave</a>
                 <div class="dropdown-divider" *ngIf="loginService._currentProfesor$ | async"></div>
                 <a class="dropdown-item" (click)="logout()" href="/">Odjava</a>
             </div>

@@ -1,10 +1,8 @@
 <div class="container">
     <h6 *ngFor="let p of prijave;">
         <div #jedno_obavestenje>
-            <h5 [(ngModel)]="kursPrijava.students_id_student">{{p.students_id_student}}</h5> ->Student:
-            {{p.student_brIndexa}}, zeli da se prijavi na kurs:
-            <h5 [(ngModel)]="kursPrijava.kursevi_id_kurs">{{p.kursevi_id_kurs}}</h5>.
-            <button type="submit" class="btn btn-success" (click)="prijaviStudentaNaKurs(kursPrijava)">Odobri</button>
+            Student sa brojem indeksa {{p.student_brIndexa}}, zeli da se prijavi na kurs:{{p.kursevi_id_kurs}}.
+            <button type="submit" class="btn btn-success" (click)="prijaviStudentaNaKurs(p)">Odobri</button>
             <hr>
         </div>
     </h6>

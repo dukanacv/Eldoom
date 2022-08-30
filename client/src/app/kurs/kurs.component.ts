@@ -83,4 +83,10 @@ export class KursComponent implements OnInit {
         this.toastr.success("Uspesno ste postavili vest!")
       }, err => console.log(err))
   }
+
+  posaljiPrijavuProfesoru() {
+    this.kursService.posaljiPrijavuProfesoru(this.kursPrijava).subscribe(response => {
+      this.toastr.warning("Prijava je poslata profesoru")
+    }, err => this.toastr.error("Nije moguce poslati prijavu. Proverite da li ste vec prijavljeni na kurs"))
+  }
 }

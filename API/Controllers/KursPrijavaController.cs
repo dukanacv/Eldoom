@@ -37,6 +37,12 @@ namespace API.Controllers
                 datum_prijave = DateTime.Now
             };
 
+            var profesorskaPrijava = await _db.profesor_prijave
+            .FirstOrDefaultAsync(pp => pp.kursevi_id_kurs == kursPrijava1.kursevi_id_kurs
+             && pp.students_id_student == kursPrijava1.students_id_student);
+
+
+            _db.profesor_prijave.Remove(profesorskaPrijava);
             _db.kurs_prijave.Add(novaPrijava);
             await _db.SaveChangesAsync();
 
@@ -114,9 +120,10 @@ namespace API.Controllers
 
             var id_profesora = await _kursService.GetProfesorIdByKursId(kursPrijava1.kursevi_id_kurs);
 
-            var brIndex = _db.Students
+            var brIndex = await _db.Students
                 .Where(s => s.Id == kursPrijava1.students_id_student)
-                .Select(s => s.brIndexa).ToString();
+                .Select(s => s.brIndexa)
+                .SingleOrDefaultAsync();
 
             var profesorPrijava = new ProfesorPrijava
             {

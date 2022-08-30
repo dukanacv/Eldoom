@@ -1,6 +1,9 @@
 <div class="jumbotron">
     <h1 class="display-4">{{kurs.naziv | titlecase}}</h1>
     <p class="lead">{{kurs.opis}}</p>
+    <button class="btn btn-primary" (click)=" posaljiPrijavuProfesoru()"
+        *ngIf="(loginService._currentStudent$ | async)">Prijavi
+        se na kurs</button>
     <button class="btn btn-warning" style="float: right;" (click)="odjavaSaKursa()"
         *ngIf="(loginService._currentStudent$ | async)">Izbrisi iz mojih
         prijava</button>
