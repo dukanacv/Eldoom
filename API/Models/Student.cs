@@ -8,7 +8,7 @@ namespace API.Models
     [Table("students")]
     public class Student
     {
-
+        [Key]
         public int Id { get; set; }
 
         [Required(ErrorMessage = "Email nije unet")]
@@ -17,7 +17,7 @@ namespace API.Models
         public string email { get; set; }
 
         [Required(ErrorMessage = "Sifra nije uneta")]
-        [StringLength(40, ErrorMessage = "Sifra ne sme biti duza od 40 karaktera")]
+        [StringLength(40, MinimumLength = 8, ErrorMessage = "Sifra ne sme biti duza od 40 karaktera niti kraca od 8.")]
         public string password { get; set; }
 
         [Required(ErrorMessage = "Ime nije uneto")]

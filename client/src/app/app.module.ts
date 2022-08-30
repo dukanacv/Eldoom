@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClient, HttpClientModule } from "@angular/common/http"
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http"
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -19,9 +19,9 @@ import { ObavestenjeComponent } from './obavestenje/obavestenje.component';
 import { ProfesorLoginComponent } from './profesor-login/profesor-login.component';
 import { HomeProfesorComponent } from './home-profesor/home-profesor.component';
 import { ObavestenjeEditComponent } from './obavestenje-edit/obavestenje-edit.component';
-import { KursGuard } from './_guards/kurs.guard';
 import { VestComponent } from './vest/vest.component';
 import { ProfesorPrijavaComponent } from './profesor-prijava/profesor-prijava.component';
+import { JwtInterceptor } from './_interceptors/jwt.interceptor';
 
 @NgModule({
   declarations: [
@@ -51,7 +51,7 @@ import { ProfesorPrijavaComponent } from './profesor-prijava/profesor-prijava.co
       positionClass: "toast-bottom-right"
     })
   ],
-  providers: [],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
