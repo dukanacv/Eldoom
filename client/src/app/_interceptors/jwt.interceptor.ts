@@ -15,7 +15,7 @@ export class JwtInterceptor implements HttpInterceptor {
 
   constructor(private loginService: LoginService) { }
 
-  intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     let currentStudent!: Student | null
     let currentProfesor!: Profesor | null
 
@@ -26,7 +26,7 @@ export class JwtInterceptor implements HttpInterceptor {
     if (currentStudent) {
       request = request.clone({
         setHeaders: {
-          Authorization: `Bearer: ${currentStudent.token}`//attach token na svaki req kada je student ulogovan i salje token zajedno sa req
+          Authorization: `Bearer ${currentStudent.token}`//attach token na svaki req kada je student ulogovan i salje token zajedno sa req
         }
       })
     }
@@ -34,7 +34,7 @@ export class JwtInterceptor implements HttpInterceptor {
     if (currentProfesor) {
       request = request.clone({
         setHeaders: {
-          Authorization: `Bearer: ${currentProfesor.token}`
+          Authorization: `Bearer ${currentProfesor.token}`
         }
       })
     }
