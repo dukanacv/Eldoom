@@ -1,7 +1,9 @@
 using System.Text;
 using API.Interfaces;
 using API.Services;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -57,6 +59,25 @@ namespace API
                     ValidateIssuer = false,// api server
                     ValidateAudience = false//angular app
                 };
+            }).AddJwtBearer("BrojDva", options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["ProfesorTokenKey"])),
+                    ValidateIssuer = false,// api server
+                    ValidateAudience = false//angular app
+                };
+            });
+
+            services.AddAuthorization(options =>
+            {
+                var defaultAuthorizationPolicyBuilder = new AuthorizationPolicyBuilder(
+                        JwtBearerDefaults.AuthenticationScheme,
+                        "BrojDva");
+                defaultAuthorizationPolicyBuilder =
+                    defaultAuthorizationPolicyBuilder.RequireAuthenticatedUser();
+                options.DefaultPolicy = defaultAuthorizationPolicyBuilder.Build();
             });
 
         }

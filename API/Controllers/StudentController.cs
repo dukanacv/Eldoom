@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using System.Threading.Tasks;
 using API.DTOs;
 using API.Models;
@@ -38,20 +40,23 @@ namespace API.Controllers
         }
 
         [HttpPost("register")]
-        public async Task<ActionResult<StudentDto>> RegisterStudent([FromBody] Student student)
+        public async Task<ActionResult<StudentDto>> RegisterStudent([FromBody] StudentRegisterDto studentRegisterDto)
         {
-            if (await StudentExists(student.brIndexa))
+            if (await StudentExists(studentRegisterDto.brIndexa))
             {
                 return BadRequest("Student sa tim brojem indeksa postoji");
             }
 
+            using var hmac = new HMACSHA512();
+
             var noviStudent = new Student
             {
-                email = student.email,
-                password = student.password,
-                ime = student.ime,
-                prezime = student.prezime,
-                brIndexa = student.brIndexa,
+                email = studentRegisterDto.email,
+                password_hash = hmac.ComputeHash(Encoding.UTF8.GetBytes(studentRegisterDto.password)),
+                password_salt = hmac.Key,
+                ime = studentRegisterDto.ime,
+                prezime = studentRegisterDto.prezime,
+                brIndexa = studentRegisterDto.brIndexa,
                 datumRegistracije = DateTime.Now
             };
 
@@ -60,10 +65,10 @@ namespace API.Controllers
 
             return new StudentDto
             {
-                ime = student.ime,
-                prezime = student.prezime,
-                brIndexa = student.brIndexa,
-                token = _tokenService.CreateToken(student)
+                ime = noviStudent.ime,
+                prezime = noviStudent.prezime,
+                brIndexa = noviStudent.brIndexa,
+                token = _tokenService.CreateToken(noviStudent)
             };
         }
 
@@ -77,10 +82,15 @@ namespace API.Controllers
                 return Unauthorized("Student sa brojem indeksa ne postoji.");
             }
 
+            using var hmac = new HMACSHA512(student.password_salt);
+            var computedHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(loginDto.password));
 
-            if (!student.password.Equals(loginDto.password))
+            for (int i = 0; i < computedHash.Length; i++)
             {
-                return Unauthorized("Niste uneli dobru lozinku");
+                if (computedHash[i] != student.password_hash[i])
+                {
+                    return Unauthorized("Lozinka nije tacna");
+                }
             }
 
             return new StudentDto
