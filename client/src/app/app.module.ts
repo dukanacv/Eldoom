@@ -22,6 +22,8 @@ import { ObavestenjeEditComponent } from './obavestenje-edit/obavestenje-edit.co
 import { VestComponent } from './vest/vest.component';
 import { ProfesorPrijavaComponent } from './profesor-prijava/profesor-prijava.component';
 import { JwtInterceptor } from './_interceptors/jwt.interceptor';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { LoadingInterceptor } from './_interceptors/loading.interceptor';
 
 @NgModule({
   declarations: [
@@ -49,9 +51,13 @@ import { JwtInterceptor } from './_interceptors/jwt.interceptor';
     BsDropdownModule.forRoot(),
     ToastrModule.forRoot({
       positionClass: "toast-bottom-right"
-    })
+    }),
+    NgxSpinnerModule
   ],
-  providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }],
+  providers:
+    [
+      { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

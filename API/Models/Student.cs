@@ -16,9 +16,8 @@ namespace API.Models
         [StringLength(40, ErrorMessage = "Format se ne podudara")]
         public string email { get; set; }
 
-        [Required(ErrorMessage = "Sifra nije uneta")]
-        [StringLength(40, MinimumLength = 8, ErrorMessage = "Sifra ne sme biti duza od 40 karaktera niti kraca od 8.")]
-        public string password { get; set; }
+        public byte[] password_hash { get; set; }
+        public byte[] password_salt { get; set; }
 
         [Required(ErrorMessage = "Ime nije uneto")]
         [StringLength(40, ErrorMessage = "Ime ne sme biti duze od 40 karaktera")]
